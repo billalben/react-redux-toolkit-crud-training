@@ -1,6 +1,19 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-const initialState = [
+const getUsersFromLocalStorage = () => {
+  const data = localStorage.getItem("users");
+  if (data) {
+    try {
+      return JSON.parse(data);
+    } catch (error) {
+      console.error("Error parsing JSON data from localStorage", error);
+      return null;
+    }
+  }
+  return null;
+};
+
+const initialState = getUsersFromLocalStorage() || [
   {
     id: nanoid(),
     name: "John",
@@ -34,5 +47,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { addUser, deleteUser ,updateUser } = userSlice.actions;
+export const { addUser, deleteUser, updateUser } = userSlice.actions;
 export default userSlice.reducer;

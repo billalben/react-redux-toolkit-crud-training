@@ -16,7 +16,7 @@ const Home = () => {
       <Link to="/create-user" className="btn btn-primary my-3">
         Create +
       </Link>
-      <table className="table">
+      <table className="table text-center">
         <thead>
           <tr>
             <th>ID</th>
